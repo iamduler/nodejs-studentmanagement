@@ -1,29 +1,15 @@
 const express = require("express");
 const studentRouter = express.Router();
+const { getAllStudent, getStudentById, createNewStudent, updateStudent, deleteStudent } = require("../controller/student.controller");
 
-studentRouter.get('/', (req, res) => {
-    res.send('Get list student');
-})
+studentRouter.get('/', getAllStudent);
 
-studentRouter.get('/:id', (req, res) => {
-    res.send('Get student detail');
-})
+studentRouter.get('/:id', getStudentById);
 
-studentRouter.post('', (req, res) => {
-    console.log(req.body);
-    res.send('Create new student');
-})
+studentRouter.post('', createNewStudent);
 
-studentRouter.put('/:id', (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
-    res.send('Update existed student');
-})
+studentRouter.put('/:id', updateStudent);
 
-studentRouter.delete('/:id', (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
-    res.send('Delete existed student');
-})
+studentRouter.delete('/:id', deleteStudent);
 
 module.exports = studentRouter;
