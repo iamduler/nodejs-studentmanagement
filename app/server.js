@@ -1,11 +1,11 @@
 // Server
 const express = require("express");
-const app = express();
-const path = require("path");
+const router = require("./routers/index.router");
 
-// Cấu hình đường dẫn tĩnh để truy xuất vào tài nguyên từ trình duyệt
-const pathPublic = path.join(__dirname, './public');
-app.use(express.static(pathPublic));
+const app = express();
+
+app.use(express.json()); // Các request & response đều ở dạng JSON để tiện thao tác
+app.use(router);
 
 // Cấu hình port cụ thể (randomly)
 const port = 7000;
@@ -19,5 +19,3 @@ app.listen(port, () => {
 app.get("/", async (req, res) => {
     res.send("Hello world!"); // Gửi về trình duyệt
 })
-
-app.set('view engine', 'hbs');
