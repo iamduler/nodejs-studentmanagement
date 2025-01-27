@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-studentmanagement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamduler/nodejs-studentmanagement.git"
+  },
+  "author": "Duler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamduler/nodejs-studentmanagement/issues"
+  },
+  "homepage": "https://github.com/iamduler/nodejs-studentmanagement#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
