@@ -19,3 +19,7 @@ app.listen(port, () => {
 app.get("/", async (req, res) => {
     res.send("Hello world!"); // Gửi về trình duyệt
 })
+
+// Setup sequelize
+const { sequelize } = require("./model/index");
+sequelize.sync({ alter: true });
