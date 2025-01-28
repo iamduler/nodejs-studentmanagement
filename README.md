@@ -8,3 +8,4 @@ Database: MySQL (Sequelize)
 npm i nodemon
 npm i express
 npm i sequelize mysql2
+npm install cors

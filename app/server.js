@@ -1,8 +1,16 @@
 // Server
 const express = require("express");
+const cors = require("cors");
 const router = require("./routers/index.router");
 
 const app = express();
+
+// Cấu hình CORS
+app.use(cors({
+    origin: "*", // Hoặc "*" nếu muốn cho phép tất cả
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Content-Type"
+}));
 
 app.use(express.json()); // Các request & response đều ở dạng JSON để tiện thao tác
 app.use(router);
