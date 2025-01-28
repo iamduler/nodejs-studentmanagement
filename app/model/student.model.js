@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 const createStudentModel = (sequelize) => {
-    sequelize.define("Student", {
+    return sequelize.define("Student", {
         fullName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -10,7 +10,7 @@ const createStudentModel = (sequelize) => {
             type: DataTypes.INTEGER,
         },
         gender: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
         numberClass: {
             type: DataTypes.INTEGER

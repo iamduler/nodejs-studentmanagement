@@ -1,31 +1,9 @@
-let studentList = [
-    {
-        id: 1,
-        fullName: "Bui Duc Lam",
-        age: 25,
-        gender: "Male",
-    },
-    {
-        id: 2,
-        fullName: "Le Thi Kim Trang",
-        age: 24,
-        gender: "Female",
-    },
-    {
-        id: 3,
-        fullName: "Bui Thi Ngoc Ha",
-        age: 23,
-        gender: "Female",
-    },
-    {
-        id: 4,
-        fullName: "Bui Thi Ha Thuong",
-        age: 18,
-        gender: "Female",
-    },
-];
+const { where } = require("sequelize");
+const { Student } = require("../model/index");
 
-const getList = () => {
+const getList = async () => {
+    const studentList = await Student.findAll();
+
     if (studentList) {
         return studentList;
     }
@@ -33,22 +11,72 @@ const getList = () => {
     return false;
 }
 
-const getDataById = (id) => {
+const getDataById = async (id) => {
     if (!id) return false;
-    console.log(studentList);
 
-    if (studentList) {
-        const index = studentList.findIndex((student) => { return student.id == id });
-        
-        console.log(index);
-        if (index !== -1) {
-            return studentList[index];
+    const student = await Student.findOne({
+        where: {
+            id,
         }
+    })
+
+    if (student) {
+        return student;
     }
     
     return false;
 }
 
+const create = async (student) => {
+    const newStudent = await Student.create(student);
+    return newStudent;
+}
+
+const updateStudentById = async (id, student) => {
+    const studentUpdate = await getDataById(id);
+
+    try {
+        if (studentUpdate) {
+            for (const property in student) {
+                studentUpdate[property] = student[property];
+            }
+
+            const updatedStudent = await studentUpdate.save();
+            return { success: 1, data: updatedStudent };
+        }
+        else {
+            return { success: 0, message: "Invalid student ID." };
+        }
+    }
+    catch (error) {
+        console.log(error);
+        return { success: 0, error: error };
+    }
+}
+
+const deleteStudentById = async (id) => {
+    const student = await getDataById(id);
+
+    try {
+        if (student) {
+            await Student.destroy({
+                where: {
+                    id
+                }
+            });
+        }
+        else {
+            return { success: 0, message: "Invalid student ID." };
+        }
+    
+        return { success: 1 };
+    }
+    catch (error) {
+        console.log(error);
+        return { success: 0, error: error };
+    }
+}
+
 module.exports = {
-    getList, getDataById
+    getList, getDataById, create, updateStudentById, deleteStudentById
 }

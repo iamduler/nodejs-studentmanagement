@@ -1,7 +1,7 @@
-const { getList, getDataById } = require("../services/student.service");
+const { getList, getDataById, create, updateStudentById, deleteStudentById } = require("../services/student.service");
 
-const getAllStudent = (req, res) => {
-    const data = getList();
+const getAllStudent = async (req, res) => {
+    const data = await getList();
 
     if (data) {
         res.status(200).send(data);
@@ -11,14 +11,14 @@ const getAllStudent = (req, res) => {
     }
 }
 
-const getStudentById = (req, res) => {
+const getStudentById = async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
         res.status(404).send('Empty id');
     }
 
-    data = getDataById(id);
+    data = await getDataById(id);
 
     if (data) {
         res.status(200).send(data);
@@ -28,21 +28,43 @@ const getStudentById = (req, res) => {
     }
 }
 
-const createNewStudent = (req, res) => {
-    console.log(req.body);
-    res.send('Create new student');
+const createNewStudent = async (req, res) => {
+    let student = req.body;
+    const newStudent = await create(student);
+    res.status(201).send(newStudent);
 }
 
-const updateStudent = (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
-    res.send('Update existed student');
+const updateStudent = async (req, res) => {
+    let student = req.body;
+    let id = req.params.id;
+    const result = await updateStudentById(id, student);
+
+    if (result.success) {
+        res.status(200).send("Record updated!");
+        return;
+    }
+    else if (result.message) {
+        res.status(500).send(result.message);
+        return;
+    }
+    
+    res.status(500).send("Updated failed. Something went wrong.");
 }
 
-const deleteStudent = (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
-    res.send('Delete existed student');
+const deleteStudent = async (req, res) => {
+    let id = req.params.id;
+    const result = await deleteStudentById(id);
+    
+    if (result.success) {
+        res.status(200).send("Record deleted!");
+        return;
+    }
+    else if (result.message) {
+        res.status(500).send(result.message);
+        return;
+    }
+    
+    res.status(500).send("Deleted failed. Something went wrong.");
 }
 
 module.exports = {
