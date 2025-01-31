@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "4041a3a0-3573-49dd-85cd-9a371e46f8cd",
+		"name": "Student Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13459525",
+		"_collection_link": "https://duler-team.postman.co/workspace/NodeJS~4c85c1b9-8d03-417d-b7d7-8132a166a062/collection/13459525-4041a3a0-3573-49dd-85cd-9a371e46f8cd?action=share&source=collection_link&creator=13459525"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:7000/students"
+			},
+			"response": []
+		},
+		{
+			"name": "Get detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:7000/students/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fullName\": \"Bui Duc Lam\",\r\n\t\"gender\": \"Male\",\r\n\t\"age\": \"25\",\r\n\t\"numberClass\": \"12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7000/students"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fullName\": \"Le Thi Kim Trang\",\r\n\t\"gender\": \"Female\",\r\n\t\"age\": \"27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7000/students/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fullName\": \"Bui Duc Lam\",\r\n\t\"gender\": \"Male\",\r\n\t\"age\": \"25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7000/students/2"
+			},
+			"response": []
+		}
+	]
+}
